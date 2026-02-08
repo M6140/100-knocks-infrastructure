@@ -63,5 +63,5 @@ sda           8:0    0 476.9G  0 disk
   home rl -wi-ao---- <397.77g
   root rl -wi-ao----   70.00g
   swap rl -wi-ao----   <7.59g
-[root@localhost ~]#
+[root@localhost ~]#先に'lvextend'を行い、'xfs_growfs'で拡張されます。
 
