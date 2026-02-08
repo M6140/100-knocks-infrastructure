@@ -95,5 +95,9 @@ firewalld が動いている場合、たとえ Apache が頑張っていても�
 sudo firewall-cmd --add-service=http --permanent
 sudo firewall-cmd --reload
 
-
+[root@localhost ~]# sudo firewall-cmd --add-service=http --permanent
+success
+[root@localhost ~]# sudo firewall-cmd --reload
+success
+[root@localhost ~]#
 
