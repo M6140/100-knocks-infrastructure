@@ -87,3 +87,13 @@ mount: /: /dev/mapper/rl-root already mounted on /.
 
 「セキュリティ向上を求められた際、データ保存用のパーティションに noexec や nosuid を設定する理由は何か？」
 改変されたり、悪用されないための対策です。
+
+項目名: [Analysis] systemctl が使えない環境でのサービス管理
+内容: 「systemd が不在の環境（コンテナ等）では systemctl は失敗する。その場合はバイナリを直接叩くか、ss コマンドでプロセスがポートを掴んでいるかを実測して判断する必要がある。」
+
+firewalld が動いている場合、たとえ Apache が頑張っていても外からは見えません。下記は許可を与えるコマンドです。
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --reload
+
+
+
