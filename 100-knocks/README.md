@@ -34,5 +34,34 @@ net.ipv4.ip_forward = 1
 
 内容: 「root権限でもリダイレクトで失敗した理由と、sysctl -w での解決」
 
-
+[root@localhost ~]# lsblk
+NAME        MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop10        7:10   0   100M  0 loop
+└─md0         9:0    0    99M  0 raid1
+loop11        7:11   0   100M  0 loop
+└─md0         9:0    0    99M  0 raid1
+sda           8:0    0 476.9G  0 disk
+├─sda1        8:1    0   600M  0 part  /boot/efi
+├─sda2        8:2    0     1G  0 part  /boot
+└─sda3        8:3    0 475.4G  0 part
+  ├─rl-root 253:0    0    70G  0 lvm   /var/lib/containers/storage/overlay
+  │                                    /
+  ├─rl-swap 253:1    0   7.6G  0 lvm   [SWAP]
+  └─rl-home 253:2    0 397.8G  0 lvm   /home
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# sudo pvs
+  PV         VG Fmt  Attr PSize   PFree
+  /dev/sda3  rl lvm2 a--  475.35g    0
+[root@localhost ~]#
+[root@localhost ~]# sudo vgs
+  VG #PV #LV #SN Attr   VSize   VFree
+  rl   1   3   0 wz--n- 475.35g    0
+[root@localhost ~]#
+[root@localhost ~]# sudo lvs
+  LV   VG Attr       LSize    Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  home rl -wi-ao---- <397.77g
+  root rl -wi-ao----   70.00g
+  swap rl -wi-ao----   <7.59g
+[root@localhost ~]#
 
