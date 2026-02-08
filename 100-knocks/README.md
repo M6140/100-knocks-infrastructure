@@ -64,4 +64,26 @@ sda           8:0    0 476.9G  0 disk
   root rl -wi-ao----   70.00g
   swap rl -wi-ao----   <7.59g
 [root@localhost ~]#先に'lvextend'を行い、'xfs_growfs'で拡張されます。
+[root@localhost ~]# sudo mkdir /mnt/test
+[root@localhost ~]#
+[root@localhost ~]# mount -o ro
+mount: bad usage
+Try 'mount --help' for more information.
+[root@localhost ~]# mount -o noexec
+mount: bad usage
+Try 'mount --help' for more information.
+[root@localhost ~]# mount -o nosuid
+mount: bad usage
+Try 'mount --help' for more information.
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# mount -o ro /dev/mapper/rl-root
+mount: /: /dev/mapper/rl-root already mounted on /.
+       dmesg(1) may have more information after failed mount system call.
+[root@localhost ~]#
+[root@localhost ~]# mount -o noexec /dev/mapper/rl-root
+[root@localhost ~]# mount -o nosuid /dev/mapper/rl-root
+[root@localhost ~]#
 
+「セキュリティ向上を求められた際、データ保存用のパーティションに noexec や nosuid を設定する理由は何か？」
+改変されたり、悪用されないための対策です。
